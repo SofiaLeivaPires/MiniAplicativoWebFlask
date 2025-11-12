@@ -1,0 +1,100 @@
+body {
+    background: linear-gradient(135deg, #14002d, #2b004a, #1a0040);
+    color: #10002b;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.perfil-container {
+    background: #fffdff;
+    padding: 2rem 3rem;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(121, 82, 246, 0.2);
+    width: 380px;
+    max-width: 90%;
+    text-align: center;
+    animation: aparecer 0.5s ease-out;
+}
+
+.minha-conta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.perfil-icone {
+    width: 38px;
+    height: 38px;
+}
+
+
+h1 {
+    font-size: 1.8rem;
+    color: #2b0066;
+    font-weight: 700;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #2b0066;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.botoes .btn {
+    width: 45%;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: #f3f3f3;
+
+}
+
+.btn-info {
+    background-color: #00b4d8;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #0096c7;
+}
+
+.btn-danger {
+    background-color: #e63946;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c1121f;
+}
+
+@keyframes aparecer {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

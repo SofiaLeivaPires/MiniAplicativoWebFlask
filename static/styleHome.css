@@ -1,0 +1,211 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #090231;
+  font-family: 'Poppins', sans-serif;
+  font-optical-sizing: auto;
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 100px; /* espaço de respiro abaixo do header fixo */
+}
+
+
+.header {
+  background: linear-gradient(135deg, #14002d, #2b004a, #1a0040);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  height: 70px;
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header nav a {
+  font-weight: 500;
+  padding: 32px;
+  text-decoration: none;
+  color: #8cfbff;
+  font-size: large;
+}
+.icon {
+  width: 30px;
+}
+
+.logo {
+  width: 200px;
+}
+
+.foto-fundo {
+    background-image: url("./img/Fundo.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120vh;
+    width: 100%;
+    position: relative;
+}
+
+/* ========= CARROSSEL ESTILO NETFLIX ========= */
+.netflix-carousel {
+  overflow: hidden;
+  padding: 10px 0;
+  position: relative;
+}
+
+.netflix-carousel .swiper-slide {
+  width: 220px !important;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.netflix-carousel .swiper-slide:hover {
+  transform: scale(1.15);
+  z-index: 10;
+  opacity: 1;
+}
+
+.movie-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  background: #000;
+}
+
+.movie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.movie-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(20, 9, 87, 0.9));
+  color: #8cfbff;
+  padding: 25px 12px 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-family: "Merriweather", serif;
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+.movie-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+.movie-overlay .badge {
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  background: #e50914;
+  color: white;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+/* Setas estilo Netflix */
+
+.netflix-carousel .swiper-button-next,
+.netflix-carousel .swiper-button-prev {
+  width: 45px;
+  height: 90px;
+  background: rgba(20, 9, 87, 0.7);
+  border-radius: 8px;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  margin-top: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+.netflix-carousel:hover .swiper-button-next,
+.netflix-carousel:hover .swiper-button-prev {
+  opacity: 1;
+  background: rgba(20, 9, 87, 0.9);
+}
+
+/* Responsivo */
+@media (max-width: 1200px) {
+  .netflix-carousel .swiper-slide { width: 200px !important; }
+}
+
+@media (max-width: 992px) {
+  .netflix-carousel .swiper-slide { width: 180px !important; }
+  .swiper-button-next, .swiper-button-prev { display: none; }
+}
+
+@media (max-width: 768px) {
+  .netflix-carousel .swiper-slide { width: 150px !important; }
+  h2 { font-size: 1.3rem !important; }
+}
+
+@media (max-width: 576px) {
+  .netflix-carousel .swiper-slide { width: 130px !important; }
+  .container-fluid { padding: 0 15px; }
+}
+
+
+.footer {
+  background: linear-gradient(135deg, #14002d, #2b004a, #1a0040);
+  text-align: center;
+  padding: 30px 10px;
+  color: #f3f3f3;
+}
+
+.footer-logo {
+  width: 80px;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.footer-content p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.footer-info {
+  font-size: 13px;
+  color: #f3f3f3;
+  opacity: 0.9;
+}

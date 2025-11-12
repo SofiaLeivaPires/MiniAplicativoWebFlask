@@ -13,6 +13,7 @@ def home():
     # Quando for criado um login, cria-se um valor, gerando uma chave-valor
     # sessões ficam no cookies
     if "username" in session:
+        flash('Login realizado com sucesso!', 'success')
         return render_template('home.html', username=session['username'])
 
     return redirect(url_for('login'))
@@ -27,7 +28,6 @@ def login():
         for user in usuarios:
             if user['username'] == username and user['password'] == password:
                 session['username'] = username
-                flash('Login realizado com sucesso!', 'success')
                 return redirect(url_for('home'))
         flash("Credenciais inválidas!", 'danger')
     return render_template('login.html')
@@ -45,11 +45,22 @@ def cadastrar():
 
     return render_template('cadastro.html')
 
-@app.route('/logout')
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
     session.pop('username', None)
     flash('Logout realizado com sucesso!', 'info')
-    return render_template('home.html')
+    return redirect(url_for('login'))
+
+
+@app.route('/perfil/<username>')
+def perfil(username):
+    if "username" in session:
+        username = session['username']
+        return render_template('perfil.html', username=username)
+    else:
+        flash('Você precisa estar logado para acessar o perfil.', 'warning')
+        return redirect(url_for('login'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

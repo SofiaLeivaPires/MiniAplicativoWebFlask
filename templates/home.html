@@ -1,53 +1,566 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <style>
-        #flash-message {
-            opacity: 1;
-            transition: opacity 0.5s ease-out;
-        }
-        #flash-message.fade-out {
-            opacity: 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="container dashboard text-center">
-        <div class="card shadow p-4 mt-5 w-50 mx-auto">
-            <h2 class="mb-3">Bem-vindo, {{ username }}!</h2>
-            <p class="lead">Você está autenticado!</p>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SofiFlix</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/swiper@9.4.0/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+    <link  rel="shortcut icon" href="../static/img/icone.png" type="image/x-icon" />
+    <link rel="stylesheet" href=".././static/styleHome.css" />
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+      {% endwith%}
 
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" id="flash-message">
-                            {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" ></button>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
+    <header class="header">
+      <img class="logo" src="../static/img/LogoSofi.png" alt="" />
+      <nav>
+        <a href="#inicio">Início</a>
+        <a href="#catalogo">Catálogo</a>
 
+        <a href="{{ url_for('perfil', username=session['username'] )}}">
+          <img src="{{ url_for('static', filename='img/perfil.png') }}" alt="Perfil" width="32" height="32">
+        </a>
+
+      </nav>
+    </header>
+
+    <section id="inicio" class="foto-fundo"></section>
+
+    <section id="catalogo" class="teste py-4">
+      <div class="container-fluid px-4">
+        <h2
+          class="text-white mb-4 fs-4 fw-bold"
+          style="text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8)"
+        >
+          Animes
+        </h2>
+
+        <div class="swiper netflix-carousel">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img
+                  src="../static/img/anime/hunter.png"
+                  alt="Hunter hunter"
+                  class="img-fluid rounded"
+                />
+                <div class="movie-overlay">
+                  <p class="movie-title">Hunter Hunter</p>
+                  <!-- <span class="badge bg-danger">Novidade</span> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/anime/haikyu.png" alt="Haikyu" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Haikyu</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/anime/demon.png" alt="Demon Slayer" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Demon Slayer</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/anime/naruto.png" alt="Naruto" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Naruto</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/anime/jujutsu.png" alt="Jujutsu" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Jujutsu Kaisen</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/anime/cyber.jpg" alt="Cyberpunk" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Cyberpunk</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/anime/pokemon.png" alt="Pokemon" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Pokemon</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/anime/castelo.png" alt="Castelo " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Castelo Animado</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/anime/seven.jpg" alt="seven " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Seven</p>
+                </div>
+              </div>
+            </div>
+              <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/anime/deathnote.png" alt="deathnote " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Deathnote</p>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+
+
+          <!-- Setas de navegação -->
+          <div class="swiper-button-next text-white"></div>
+          <div class="swiper-button-prev text-white"></div>
         </div>
+      </div>
+    </section>
+
+    <section id="filmes" class="teste py-4">
+      <div class="container-fluid px-4">
+        <h2
+          class="text-white mb-4 fs-4 fw-bold"
+          style="text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8)"
+        >
+          Filmes
+        </h2>
+
+        <div class="swiper netflix-carousel">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img
+                  src="../static/img/filmes/shrek.png"
+                  alt="Hunter hunter"
+                  class="img-fluid rounded"
+                />
+                <div class="movie-overlay">
+                  <p class="movie-title">Shrek</p>
+                  <!-- <span class="badge bg-danger">Novidade</span> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/filmes/megamente.png" alt="Naruto" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Megamente</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/filmes/panico.png" alt="Haikyu" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Panico</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/filmes/kill.png" alt="Demon Slayer" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Kill Bill</p>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/filmes/fratura.png" alt="Jujutsu" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Fragmentado</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/filmes/corra.png" alt="Cyberpunk" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Corra</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/filmes/ondeesta.png" alt="Pokemon" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Onde está segunda?</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/filmes/meditanio.png" alt="Castelo " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Mistério no mediterrânio</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/filmes/interestelas.png" alt="seven " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Interestelar</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/filmes/birdbox.png" alt="seven " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Birdbox</p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <!-- Setas de navegação -->
+          <div class="swiper-button-next text-white"></div>
+          <div class="swiper-button-prev text-white"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="series" class="teste py-4">
+      <div class="container-fluid px-4">
+        <h2
+          class="text-white mb-4 fs-4 fw-bold"
+          style="text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8)"
+        >
+          Séries
+        </h2>
+
+        <div class="swiper netflix-carousel">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img
+                  src="../static/img/series/office.png"
+                  alt="Hunter hunter"
+                  class="img-fluid rounded"
+                />
+                <div class="movie-overlay">
+                  <p class="movie-title">The Office</p>
+                  <!-- <span class="badge bg-danger">Novidade</span> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/alice.png" alt="Haikyu" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Alice in Borderland</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/Breaking.png" alt="Demon Slayer" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Breaking bad</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/dark.png" alt="Naruto" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Dark</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/dexter.png" alt="Jujutsu" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Dexter</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/lacasa.png" alt="Cyberpunk" />
+                <div class="movie-overlay">
+                  <p class="movie-title">La Casa de Papel</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/lupin.png" alt="Pokemon" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Lupin</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/narcos.png" alt="Castelo " />
+                <div class="movie-overlay">
+                    <p class="movie-title">Narcos</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/round.png" alt="seven " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Round six</p>
+                </div>
+              </div>
+            </div>
+
+              <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/umbrella.png" alt="seven " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Umbrella Academy</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/walking.png" alt="seven " />
+                <div class="movie-overlay">
+                  <p class="movie-title">The walking dead</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/series/you.png" alt="seven " />
+                <div class="movie-overlay">
+                  <p class="movie-title">You</p>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+
+
+          <!-- Setas de navegação -->
+          <div class="swiper-button-next text-white"></div>
+          <div class="swiper-button-prev text-white"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="desenhos" class="teste py-4">
+      <div class="container-fluid px-4">
+        <h2
+          class="text-white mb-4 fs-4 fw-bold"
+          style="text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8)"
+        >
+          Desenhos
+        </h2>
+
+        <div class="swiper netflix-carousel">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img
+                  src="../static/img/desenho/clarencio.png"
+                  alt="Clarencio"
+                  class="img-fluid rounded"
+                />
+                <div class="movie-overlay">
+                  <p class="movie-title">Clarenio o Otimista</p>
+                  <!-- <span class="badge bg-danger">Novidade</span> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/desenho/gravity.png" alt="Haikyu" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Gravity Falls</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/desenho/bob.png" alt="Demon Slayer" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Bob Esponja</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/desenho/gumball.png" alt="Naruto" />
+                <div class="movie-overlay">
+                  <p class="movie-title">O incrivel mundo de Gumball</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/desenho/scooby.png" alt="Jujutsu" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Scooby Doo</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/desenho/loney.png" alt="Cyberpunk" />
+                <div class="movie-overlay">
+                  <p class="movie-title">LoneyTunes</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/desenho/jony.png" alt="Pokemon" />
+                <div class="movie-overlay">
+                  <p class="movie-title">Johnny Test</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/desenho/steve.png" alt="Castelo " />
+                <div class="movie-overlay">
+                    <p class="movie-title">Steve universe</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/desenho/sonic.png" alt="seven " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Sonic</p>
+                </div>
+              </div>
+            </div>
+
+              <div class="swiper-slide">
+              <div class="movie-card">
+                <img src="../static/img/desenho/titas.png" alt="seven " />
+                <div class="movie-overlay">
+                  <p class="movie-title">Jovens Titãs em ação</p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <!-- Setas de navegação -->
+          <div class="swiper-button-next text-white"></div>
+          <div class="swiper-button-prev text-white"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+    <div class="footer-content">
+      <img src=".././static/img/LogoSofi.png" alt="Logo Sofiflix" class="footer-logo">
+      <p>&copy; 2025 SofiFlix | Streaming de Confiança</p>
+      <p class="footer-info">Entre em contato em caso de dúvidas | contatosofiflix@gmail.com.br</p>
     </div>
+  </footer>
 
-    <script>
-        window.onload = function() {
-            const flash = document.getElementById('flash-message');
-            if (flash) {
-                setTimeout(() => {
-                    flash.classList.add('fade-out');
-                }, 2500);
-                setTimeout(() => {
-                    flash.style.display = 'none';
-                }, 3000);
-            }
-        }
-    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9.4.0/swiper-bundle.min.js"></script>
+    <script src="../static/main.js"></script>
+  </body>
 </html>

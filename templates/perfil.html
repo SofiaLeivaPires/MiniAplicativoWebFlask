@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../static/img/icone.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/stylePerfil.css">
+</head>
+<body>
+    <div class="container">
+        <div class="perfil-container text-center">
+            <div class="minha-conta">
+                <img src="{{ url_for('static', filename='img/perfil.png') }}" alt="Perfil" class="perfil-icone">
+                <h1>Meu perfil</h1>
+            </div>
+
+            <h2>Bem-vindo(a), {{ username }}!</h2>
+
+            <div class="botoes">
+                <a class="btn btn-info w-50 mt-2" href="{{ url_for('home') }}">Voltar Menu</a>
+                <a class="btn btn-danger w-50 mt-2" href="{{ url_for('logout') }}">Sair da conta</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

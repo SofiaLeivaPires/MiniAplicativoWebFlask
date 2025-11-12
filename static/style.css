@@ -6,6 +6,12 @@
     width: 100%;
 }
 
+body {
+  font-family: 'Poppins', sans-serif;
+  font-optical-sizing: auto;
+}
+
+
 body::before {
       content: "";
       position: absolute;
@@ -27,7 +33,6 @@ body::before {
     display: flex;
     justify-content: center;
     align-items:center;
-
 }
 
 .login-container,
@@ -38,9 +43,10 @@ body::before {
     color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,255, 0.1);
-    min-width: 40vh;
     border: 1px solid white;
-
+    width: 400px;
+    max-width: 90%;
+    min-height: 380px;
 }
 
 
